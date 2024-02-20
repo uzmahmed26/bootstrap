@@ -1,0 +1,95 @@
+*{
+   background-image: url(./img/bg.jpg);
+}
+.container-fluid .nav-item a{
+    text-align: center;
+    color: white;
+}
+.navbar-brand{
+    color: white;
+}
+.nav-link{
+    color: white;
+}
+#name{
+    color: #ffd35e;
+}
+#shan{
+    margin-left: 50px;
+}
+#kitchen{
+    margin-right: 70px;
+}
+.d-flex{
+    margin-right: 90px;
+}
+.halal{
+ 
+    display: flex; 
+    /* padding:  60px; */
+    padding-left: 210px;  
+}
+
+.carousel{
+padding-left: 50px;
+padding-right: 40px;
+}
+
+.card{
+    margin: 80px;
+    border-style: none;
+  
+}
+.card-text{
+    text-align: center;
+    color: white;
+    font-weight:900;
+    font-family:Arial, Helvetica, sans-serif;
+}
+.main {
+    line-height: 6vh;
+}
+.one{
+    font-weight: lighter;
+    text-align: center;
+    color: rgb(224, 224, 211);
+    
+}
+.two{
+    font-weight: bolder;
+    text-align: center;
+    color: #ffd35e !important;
+   
+}
+.three{
+    font-weight: lighter;
+    text-align: center;
+    color: #ffd35e !important;
+  
+}
+.button{
+    color: white;
+    
+}
+.text-center {
+    color: white;
+}
+.bttn{
+border: 2px solid;
+border-color: #ffd35e;
+color: whitesmoke;
+
+}
+.HSE-Policy{
+    margin-top: 80px;
+    margin-left: 380px;
+}
+h1{
+    text-align: center;
+    font-weight: 900;
+    color: aliceblue;
+}
+.col-md-4{
+    background-image: url(./img/chicken-skewers-with-slices-sweet-peppers-dill_2829-18809.avif);
+    background-repeat: no-repeat;
+}

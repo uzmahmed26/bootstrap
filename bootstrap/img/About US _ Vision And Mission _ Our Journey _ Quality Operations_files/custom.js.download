@@ -1,0 +1,412 @@
+// WOW JS INITIALIZATION
+
+AOS.init({once: true});
+
+
+
+$(':input').inputmask();
+
+// readmore
+
+function AddReadMore() {
+
+    //This limit you can set after how much characters you want to show Read More.
+
+    var carLmt = 100;
+
+    // Text to show when text is collapsed
+
+    var readMoreTxt = $("#read_more_button_text").val();
+
+    // Text to show when text is expanded
+
+    var readLessTxt = $("#read_less_button_text").val();
+
+    //Traverse all selectors with this class and manupulate HTML part to show Read More
+
+    $(".addReadMore").each(function() {
+
+        if ($(this).find(".firstSec").length)
+
+            return;
+
+        var allstr = $(this).html();
+
+        //console.log($(this).html());
+
+        if (allstr.length > carLmt) {
+
+            var firstSet = allstr.substring(0, carLmt);
+
+            var secdHalf = allstr.substring(carLmt, allstr.length);
+
+            var strtoadd = firstSet + "<span class='SecSec'>" + secdHalf + "</span><span class='readMore'  title='Click to Show More'>" + readMoreTxt + "</span><span class='readLess' title='Click to Show Less'>" + readLessTxt + "</span>";
+
+            $(this).html(strtoadd);
+
+        }
+
+    });
+
+    //Read More and Read Less Click Event binding
+
+    $(document).on("click", ".readMore,.readLess", function() {
+        $(this).closest(".addReadMore").toggleClass("showlesscontent showmorecontent");
+
+    });
+
+}
+
+AddReadMore();
+
+$(function() {
+
+    //Calling function after Page Load
+
+
+
+});
+
+
+
+
+
+
+// FOR BOOTSTRAP ALERT AUTO FADE
+
+$(".alert").fadeTo(2000, 500).slideUp(500, function() {
+
+    $(".alert").slideUp(500);
+
+});
+
+
+
+$(document).ready(function() {
+
+
+
+
+
+    $('#carouselExampleIndicators').on('slid.bs.carousel', function() {
+
+        currentIndex = $('.carousel-item.active').index();
+
+
+
+        $('.cat-products').addClass('hideit');
+
+        $('.cat-product-' + currentIndex).removeClass('hideit');
+
+    });
+
+
+
+    $("#sidebar").mCustomScrollbar({
+
+        theme: "minimal"
+
+    });
+
+    $('#dismiss, .overlay').on('click', function() {
+
+        $('#sidebar').removeClass('active');
+
+        $('.overlay').removeClass('active');
+
+    });
+
+    $('#sidebarCollapse').on('click', function() {
+
+        $('#sidebar').addClass('active');
+
+        $('.overlay').addClass('active');
+
+        $('.collapse.in').toggleClass('in');
+
+        $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+
+    });
+
+    // maskings
+
+    $('.phone').mask('0000-0000000');
+
+    $('.cnic').mask('00000-0000000-0');
+
+    // For category tabs
+
+    $('div.categories-box button').click(function() {
+
+        var category_id = $(this).attr('category-tab');
+
+
+
+        $('div.categories-box button').removeClass('active');
+
+        $('.category-content').removeClass('active');
+
+
+
+        $(this).addClass('active');
+
+        $("#" + category_id).addClass('active');
+
+    })
+
+    // carousel
+
+    // $('.carousel').carousel({ interval: 4000, touch: true });
+    $('#carousel-thumb').carousel({ interval: false, touch: true });
+
+    $(".carousel").swipe({
+        swipe: function(event, direction, distance, duration, fingerCount, fingerData) {
+
+            if (direction == 'left')
+
+                $(this).carousel('next');
+
+            if (direction == 'right')
+
+                $(this).carousel('prev');
+
+        },
+        allowPageScroll: "vertical"
+    });
+
+});
+
+
+
+// Select all links with hashes
+
+$('a[class*="smooth-scroll"]')
+
+// Remove links that don't actually link to anything
+
+.not('[href="#"]')
+
+.not('[href="#0"]')
+
+.click(function(event) {
+
+    // On-page links
+
+    if (
+
+        location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '')
+
+        &&
+
+        location.hostname == this.hostname
+
+    ) {
+
+        // Figure out element to scroll to
+
+        var target = $(this.hash);
+
+        target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+
+        // Does a scroll target exist?
+
+        if (target.length) {
+
+            // Only prevent default if animation is actually gonna happen
+
+            event.preventDefault();
+
+            $('html, body').animate({
+
+                scrollTop: target.offset().top
+
+            }, 1000, function() {
+
+                // Callback after animation
+
+                // Must change focus!
+
+                var $target = $(target);
+
+                $target.focus();
+
+                if ($target.is(":focus")) { // Checking if the target was focused
+
+                    return false;
+
+                } else {
+
+                    $target.attr('tabindex', '-1'); // Adding tabindex for elements not focusable
+
+                    $target.focus(); // Set focus again
+
+                };
+
+            });
+
+        }
+
+    }
+
+});
+
+
+
+if ($('#back-to-top').length) {
+
+
+
+    if ($(window).width() < 768) {
+
+        var scrollTrigger = 200; // px
+
+    } else {
+
+        var scrollTrigger = 900; // px
+
+    }
+
+    backToTop = function() {
+
+        var scrollTop = $(window).scrollTop();
+
+        if (scrollTop > scrollTrigger) {
+
+            $('#back-to-top').addClass('show');
+
+        } else {
+
+            $('#back-to-top').removeClass('show');
+
+        }
+
+    };
+
+    backToTop();
+
+    $(window).on('scroll', function() {
+
+        backToTop();
+
+    });
+
+
+
+}
+
+$('#back-to-top').on('click', function(e) {
+
+    e.preventDefault();
+
+    $('html,body').animate({
+
+        scrollTop: 0
+
+    }, 700);
+
+});
+
+$(function() {
+    $("#read_eng").click(function() {
+        $(this).text(function(i, text) {
+            return text === "READ LESS" ? "READ MORE" : "READ LESS";
+        })
+    });
+    $("#read_fr").click(function() {
+        $(this).text(function(i, text) {
+            return text === "LIRE MOINS" ? "LIRE LA SIUTE" : "LIRE MOINS";
+        })
+    });
+    $("#read_ar").click(function() {
+        $(this).text(function(i, text) {
+            return text === "أقرأ أقل" ? "اقرأ أكثر" : "أقرأ أقل";
+        })
+    });
+    
+$(".closedBtn").click(function(){
+    $(".usa_dialog").hide();
+});
+
+})
+
+// For desktop language selector
+
+$(".country-btn").click(function() {
+
+    $(".country-dropdown").is(":hidden") ? $(".country-dropdown").slideDown("medium") : $(".country-dropdown").slideUp("medium")
+
+}), $(".country-dropdown").mouseleave(function() {
+
+    $(this).slideUp("medium")
+
+});
+
+$(".lang-btn").click(function() {
+
+    $(".lang-dropdown").is(":hidden") ? $(".lang-dropdown").slideDown("medium") : $(".lang-dropdown").slideUp("medium")
+
+}), $(".lang-dropdown").mouseleave(function() {
+
+    $(this).slideUp("medium")
+
+});
+
+// for mobile sidebar menu collapse
+
+var collapseNav = document.getElementsByClassName("collapsible-menu");
+
+var inc;
+
+for (inc = 0; inc < collapseNav.length; inc++) {
+
+    collapseNav[inc].addEventListener("click", function() {
+
+        this.classList.toggle("active");
+
+        var content = this.nextElementSibling;
+
+        if (content.style.maxHeight) {
+
+            content.style.maxHeight = null;
+
+        } else {
+
+            content.style.maxHeight = content.scrollHeight + "px";
+
+        }
+
+    });
+
+}
+
+// For ecommerce page tab's menu
+
+$('ul.tabs li').click(function() {
+
+    var tab_id = $(this).attr('data-tab');
+
+
+
+    $('ul.tabs li').removeClass('current');
+
+    $('.tab-content').removeClass('current');
+
+
+
+    $(this).addClass('current');
+
+    $("#" + tab_id).addClass('current');
+
+})
+
+// for shop tab witch
+
+function toggle_shop_cat(id, me) {
+
+    $('.categories-tabs').removeClass('active');
+
+    $(me).closest('.categories-tabs').addClass('active');
+
+};
+
+
